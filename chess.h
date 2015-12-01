@@ -40,6 +40,13 @@ class chessBoard{
             board [k][l] = board [i] [j];
             board [i] [j] = "SPACE";
         };
+        
+        void movePiece(int row, int column){
+			string pieceName = board [row] [column];
+			if (pieceName == "pawn"){
+				
+			}
+		};
 };
 
 class piece: public chessBoard{
@@ -51,7 +58,6 @@ class piece: public chessBoard{
             newBoard.setBoardPiece(nameOfPiece, row, column);
         };
         
-        void move(){};
 };
 /*    public:
         checkPiece(int row, int column){
