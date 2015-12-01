@@ -37,11 +37,7 @@ int main(){
             int j = 0;
             int k = 0;
             int l = 0;
-            cout<< "Enter coordinates of piece to be moved: ";
-            cin >> i >> j;
-            cout<< endl;
-            cout<< "Enter coordinates of desired location: ";
-            cin >> k >> l;
+            cin >> i >> j >> k >> l;
             newBoard.movePiece(i,j,k,l);
             newBoard.getBoard();
 
