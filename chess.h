@@ -6,9 +6,58 @@
 
 using namespace std;
 
+
+class piece{
+	
+    private:
+        string nameOfPiece;
+        int row;
+		int column;
+		bool specialMove;
+		bool pawn;
+        
+    public:	
+        piece(string name){
+            nameOfPiece = name;
+            if (name == "pawn"){
+				specialMove = true;
+				pawn = true;
+			}	
+        }
+        
+        void setPiece(int i, int j){
+            row = i;
+            column = j;
+		}
+		
+		void movePiece(int i, int j){
+			if (pawn = true){
+				if (i < row - 1 && i > row + 1){
+					return;
+				}
+				if (j != column){
+					return;
+				}
+			}
+			
+		}
+		
+		int getRow(){
+			return row;
+		}
+		
+		int getColumn(){
+			return column;
+		}		
+		
+		string getName(){
+			return nameOfPiece;
+		}
+};
+
 class chessBoard{
     private:
-        string board [8] [8];
+		string board [8] [8];
 
     public:
         chessBoard(){
@@ -17,27 +66,31 @@ class chessBoard{
                     board [row] [column] = "SPACE";
                 }
             }
-        };
+        }
+        
+        void setPieceOnBoard(piece &thePiece){
+			int row = thePiece.getRow();
+			int column = thePiece.getColumn();
+			string name = thePiece.getName();
+			board [row] [column] = name;
+		}
 
         void getBoard(){
             for (int i = 0; i < 8; i++){
                 for (int j = 0; j < 8; j++){
-                    cout << board[i][j] << "\t";
+                    cout << board [i] [j] << "\t";
                 }
                 cout << "\n\n\n";
             }
-        };
+        }
 
         string getBoardPiece(int row, int column){
             return board [row] [column];
-        };
+        }
 
-        void setBoardPiece(string name, int row, int column){
-            board [row] [column] = name;
-        };
 
-        void movePiece(int i, int j, int k, int l){
-            board [k][l] = board [i] [j];
+  /*      void movePiece(int i, int j, int k, int l){
+            board [k] [l] = board [i] [j];
             board [i] [j] = "SPACE";
         };
         
@@ -47,18 +100,11 @@ class chessBoard{
 				
 			}
 		};
+		 
+		*/
 };
 
-class piece: public chessBoard{
-    private:
-        string nameOfPiece;
-    public:
-        piece(chessBoard &newBoard, string name, int row, int column){
-            nameOfPiece = name;
-            newBoard.setBoardPiece(nameOfPiece, row, column);
-        };
-        
-};
+
 /*    public:
         checkPiece(int row, int column){
             if (board [row] [column] == "pawn"){
