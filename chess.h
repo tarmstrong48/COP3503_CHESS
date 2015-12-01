@@ -50,6 +50,8 @@ class piece: public chessBoard{
             nameOfPiece = name;
             newBoard.setBoardPiece(nameOfPiece, row, column);
         };
+        
+        void move(){};
 };
 /*    public:
         checkPiece(int row, int column){
