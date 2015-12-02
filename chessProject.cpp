@@ -37,7 +37,18 @@ int main(){
 			cout << "Example: \"Move piece \" 1 A \" to \"1 B\"." << endl;
 
 			while (gameFinished != true){
-				cout << "";
+				int rowPre;
+				int columnPre;
+				int rowAfter;
+				int columnAfter;
+				
+				cout << playerOneName << " move piece ";
+				cin >> rowPre >> columnPre;
+				cout << " to ";
+				cin >> rowAfter >> columnAfter;
+				
+				newBoard.movePiece(rowPre, columnPre, rowAfter, columnAfter);				
+				newBoard.getBoard();
 			}
 			
 			

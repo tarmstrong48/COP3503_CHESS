@@ -64,6 +64,7 @@ class chessBoard{
             return board [row] [column];
         }
 		
+		//Only if checkmate doesn't work, this code will be there
 		bool checkForKingOne(){
 			for (int i = 1; i < 9; i++){
 				for (int j = 1; j < 8; j++){
@@ -77,6 +78,31 @@ class chessBoard{
 			}
 		}
 		
+		//Only if checkmate doesn't work, this code will be there
+		bool checkForKingTwo(){
+			for (int i = 1; i < 9; i++){
+				for (int j = 1; j < 8; j++){
+					if (board [i] [j] == "K1"){
+						return true;
+					}
+					else{
+						return false;
+					}
+				}
+			}
+		}
+		
+		void movePiece(int i, int j, int k, int l){
+			if (this -> legalityOfMove() == true){
+				board [k] [l] = board [i] [j];
+				board [i] [j] = "SPACE";
+			}
+		}
+		
+		bool legalityOfMove(){
+			return true;
+			return false;
+		}
 		void pawnConstraints(){
 		
 		}
