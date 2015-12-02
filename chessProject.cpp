@@ -5,11 +5,11 @@
 
 using namespace std;
 
-chessBoard newBoard;
-
 int main(){
 	bool exit = false;
 	int menuSelection;
+	string playerOneName;
+	string playerTwoName;
 	
 	while (exit != true){
 		cout << "MAIN MENU" << endl;
@@ -20,14 +20,33 @@ int main(){
 			exit = true;
 		}
 		else if (menuSelection == 1){
+			bool gameFinished = false;
+			chessBoard newBoard;
+			newBoard.getBoard();
+			cout << endl;
+			cout << "Enter player one's name: ";
+			cin >> playerOneName;
+			cout << endl;
+			cout << "Enter player two's name: ";
+			cin >> playerTwoName;
+			cout << endl;
 			
+			cout << "START!" << endl;
+			newBoard.setUpBoard();
+			cout << "Please enter which piece you would like to move by coordinates." << endl;
+			cout << "Example: \"Move piece \" 1 A \" to \"1 B\"." << endl;
+
+			while (gameFinished != true){
+				cout << "";
+			}
+			
+			
+			newBoard.getBoard();
 		}
 		else{
 			cout << "Please enter a valid choice. Try again." << endl;
 		}
 	}
-	newBoard.getBoard();
-	newBoard.setUpBoard();
-	newBoard.getBoard();
+	
 	return 0;
 }

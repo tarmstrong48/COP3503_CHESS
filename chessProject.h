@@ -64,6 +64,19 @@ class chessBoard{
             return board [row] [column];
         }
 		
+		bool checkForKingOne(){
+			for (int i = 1; i < 9; i++){
+				for (int j = 1; j < 8; j++){
+					if (board [i] [j] == "K1"){
+						return true;
+					}
+					else{
+						return false;
+					}
+				}
+			}
+		}
+		
 		void pawnConstraints(){
 		
 		}
