@@ -171,8 +171,10 @@ class chessBoard{
 			logicMoveRow = rowAfter - rowPre;
 			logicMoveColumn = columnAfter - columnPre;
 			
-			if (rowPre == 2 && columnPre == columnAfter){
-				return true;
+			if (logicMoveRow == 2 && columnPre == columnAfter) {
+				if (rowPre == 2 && columnPre == columnAfter) {
+					return true;
+				}
 			}
 			else if (logicMoveRow == 1 && board [rowAfter] [columnAfter] != "SPACE" && (logicMoveColumn == 1 || logicMoveColumn == -1)){
 				return true;
