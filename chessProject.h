@@ -111,6 +111,12 @@ class chessBoard{
 				}
 				return false;
 			}
+			else if (piece == "KN1") {
+				if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
 			
 			return false;
 		}
@@ -184,6 +190,30 @@ class chessBoard{
 				return true;
 			}
 			else{
+				return false;
+			}
+		}
+
+		bool knightConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) {
+			int logicMoveRow;
+			int logicMoveColumn;
+
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+
+			if (logicMoveRow == 2 && logicMoveColumn == 1) {
+				return true;
+			}
+			else if (logicMoveRow == 2 && logicMoveColumn == -1) {
+				return true;
+			}
+			else if (logicMoveRow == -2 && logicMoveColumn == 1) {
+				return true;
+			}
+			else if (logicMoveRow == -2 && logicMoveColumn == -1) {
+				return true;
+			}
+			else {
 				return false;
 			}
 		}
