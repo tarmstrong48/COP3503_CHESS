@@ -190,8 +190,17 @@ class chessBoard{
 		void checkMate(){
 			
 		}
+<<<<<<< HEAD
+};
+=======
+>>>>>>> f05bb31bf23ce6b130312e0f05123b1c865149b1
+
 };
 
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> f05bb31bf23ce6b130312e0f05123b1c865149b1
 
 #endif
