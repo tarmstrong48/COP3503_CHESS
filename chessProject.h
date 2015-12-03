@@ -114,29 +114,10 @@ class chessBoard{
 		void checkMate(){
 			
 		}
-  /*      void movePiece(int i, int j, int k, int l){
-            board [k] [l] = board [i] [j];
-            board [i] [j] = "SPACE";
-        };
-        
-        void movePiece(int row, int column){
-			string pieceName = board [row] [column];
-			if (pieceName == "pawn"){
-				
-			}
-		};
-		 
-		*/
+
 };
 
 
-/*    public:
-        checkPiece(int row, int column){
-            if (board [row] [column] == "pawn"){
-
-            }
-        };
-};*/
 
 
 #endif
