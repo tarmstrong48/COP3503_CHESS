@@ -106,8 +106,10 @@ class chessBoard{
 			//Check to see if own piece is at the after point
 			//if (
 			if (piece == "P1"){
-				this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter);
-				return true;
+				if (this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true){
+					return true;
+				}
+				return false;
 			}
 			
 			return false;
@@ -169,7 +171,7 @@ class chessBoard{
 			logicMoveRow = rowAfter - rowPre;
 			logicMoveColumn = columnAfter - columnPre;
 			
-			if (logicMoveRow == 2 && columnPre == columnAfter){
+			if (rowPre == 2 && columnPre == columnAfter){
 				return true;
 			}
 			else if (logicMoveRow == 1 && board [rowAfter] [columnAfter] != "SPACE" && (logicMoveColumn == 1 || logicMoveColumn == -1)){
@@ -201,7 +203,7 @@ class chessBoard{
 
 class takenPieces{
 	private:
-		string pieces[16];
+		string chessPieces[16];
 	
 	public:
 		takenPieces(){
