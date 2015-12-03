@@ -92,19 +92,41 @@ class chessBoard{
 			}
 		}
 		
-		void movePiece(int i, int j, int k, int l){
-			if (this -> legalityOfMove() == true){
-				board [k] [l] = board [i] [j];
-				board [i] [j] = "SPACE";
+		void movePiece(int rowPre, int columnPre, int rowAfter, int columnAfter){
+			if (this -> legalityOfMove(rowPre, columnPre, rowAfter, columnAfter) == true){
+				board [rowAfter] [columnAfter] = board [rowPre] [columnPre];
+				board [rowPre] [columnPre] = "SPACE";
 			}
 		}
 		
-		bool legalityOfMove(){
+		bool legalityOfMove(int rowPre, int columnPre, int rowAfter, int columnAfter){
+			//Check to see if own piece is at the after point
+			if (
+			if (board [row] [column] == "P1"){
+				this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter);
+			}
 			return true;
 			return false;
 		}
-		void pawnConstraints(){
 		
+		bool isPieceThere(int rowPre, int columnPre){
+			
+		}
+		
+		bool inputOutOfBounds(int rowPre, int columnPre){
+			if (rowPre < 1 || columnPre < 1 || rowPre > 8 || columnPre > 8){
+				cout << "Input out of bounds" << endl;
+				return true;
+			}
+			return false;
+		}
+		
+		bool outputOutOfBounds(int rowAfter, int columnAfter){
+			if (rowAfter < 1 || columnAfter < 1|| rowAfter > 8 || columnAfter > 8
+		}
+		
+		bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){
+			if (
 		}
 
 		void check(){
