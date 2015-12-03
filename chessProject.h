@@ -148,12 +148,39 @@ class chessBoard{
 			
 		}
 		
-		bool pieceP2(){
+		bool pieceP2(int rowPre, int columnPre){
+			string parsingNameOfPiece;
+			string playerOneString = "";
 			
+			parsingNameOfPiece = board [rowPre] [columnPre];
+			playerOneString = parsingNameOfPiece.find("2");
+			
+			if (playerOneString == "2"){
+				return true;
+			}
+			return false;
 		}
 		
 		bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){
+			int logicMoveRow;
+			int logicMoveColumn;
 			
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+			
+			if (logicMoveRow == 2 && columnPre == columnAfter){
+				return true;
+			}
+			else if (logicMoveRow == 1 && board [rowAfter] [columnAfter] != "SPACE" && (logicMoveColumn == 1 || logicMoveColumn == -1)){
+				return true;
+				//May need to check to see if opponents piece is taken.
+			}
+			else if (logicMoveRow == 1 && columnPre == columnAfter){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 
 		void check(){
@@ -163,29 +190,8 @@ class chessBoard{
 		void checkMate(){
 			
 		}
-  /*      void movePiece(int i, int j, int k, int l){
-            board [k] [l] = board [i] [j];
-            board [i] [j] = "SPACE";
-        };
-        
-        void movePiece(int row, int column){
-			string pieceName = board [row] [column];
-			if (pieceName == "pawn"){
-				
-			}
-		};
-		 
-		*/
 };
 
-
-/*    public:
-        checkPiece(int row, int column){
-            if (board [row] [column] == "pawn"){
-
-            }
-        };
-};*/
 
 
 #endif

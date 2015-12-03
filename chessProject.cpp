@@ -42,6 +42,8 @@ int main(){
 				int rowAfter;
 				int columnAfter;
 				
+				newBoard.getBoard();
+				
 				cout << playerOneName << " move piece ";
 				cin >> rowPre >> columnPre;
 				cout << " to ";
