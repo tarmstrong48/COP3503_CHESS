@@ -107,8 +107,9 @@ class chessBoard{
 			//if (
 			if (piece == "P1"){
 				this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter);
+				return true;
 			}
-			return true;
+			
 			return false;
 		}
 		
@@ -190,17 +191,21 @@ class chessBoard{
 		void checkMate(){
 			
 		}
-<<<<<<< HEAD
-};
-=======
->>>>>>> f05bb31bf23ce6b130312e0f05123b1c865149b1
-
 };
 
-<<<<<<< HEAD
-=======
+//When a piece is taken away, it is taken away to this object
+//When a pawn goes to the otherside, it can take one of the pieces
+//placed in this object.
 
+//There will be one for each player.
 
->>>>>>> f05bb31bf23ce6b130312e0f05123b1c865149b1
+class takenPieces{
+	private:
+		string pieces[16];
+	
+	public:
+		takenPieces(){
+		}
+};
 
 #endif
