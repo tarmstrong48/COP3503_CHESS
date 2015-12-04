@@ -125,6 +125,12 @@ class chessBoard{
 				}
 				return false;
 			}
+			else if (piece == "B1") {
+				if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
 			
 			return false;
 		}
@@ -242,9 +248,29 @@ class chessBoard{
 			else if (logicMoveColumn >= -7 && logicMoveColumn < 0 && rowAfter == rowPre) {
 				return true;
 			}
-			else {
-				return false;
+			return false;
+		}
+
+		bool bishopConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+			int logicMoveRow;
+			int logicMoveColumn;
+
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+
+			if (logicMoveRow >= 1 && logicMoveRow <= 7 && logicMoveColumn == logicMoveRow) {
+				return true;
 			}
+			if (logicMoveRow <= -1 && logicMoveRow >= -7 && logicMoveColumn == logicMoveRow) {
+				return true;
+			}
+			if (logicMoveRow >= 1 && logicMoveRow <= 7 && logicMoveColumn == -logicMoveRow) {
+				return true;
+			}
+			if (logicMoveRow <= -1 && logicMoveRow >= -7 && logicMoveColumn == -logicMoveRow) {
+				return true;
+			}
+			return false;
 		}
 
 		void check(){
