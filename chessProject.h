@@ -280,6 +280,67 @@ class chessBoard{
 		void checkMate(){
 			
 		}
+        void getMoveSpot(string moveStringPre, string moveStringAfter, int& rowPre, int& columnPre, int& rowAfter, int& columnAfter){
+            if(moveStringPre.length() != 2 || moveStringPre.length() != 2){
+                cout<< "Wrong format, write one number then one letter like this: 1A.\n";
+            }
+            else{
+                rowPre = stoi(moveStringPre.substr(0,1));
+                cout<< "row pre: "<< rowPre<< endl;
+                rowAfter = stoi(moveStringAfter.substr(0,1));
+                cout<< "row after: "<< rowAfter<< endl;
+                if(moveStringPre.substr(1,1) == "A"){
+                    columnPre = 1;
+                }
+                else if(moveStringPre.substr(1,1) == "B"){
+                    columnPre = 2;
+                }
+                else if(moveStringPre.substr(1,1) == "C"){
+                    columnPre = 3;
+                }
+                else if(moveStringPre.substr(1,1) == "D"){
+                    columnPre = 4;
+                }
+                else if(moveStringPre.substr(1,1) == "E"){
+                    columnPre = 5;
+                }
+                else if(moveStringPre.substr(1,1) == "F"){
+                    columnPre = 6;
+                }
+                else if(moveStringPre.substr(1,1) == "G"){
+                    columnPre = 7;
+                }
+                else if(moveStringPre.substr(1,1) == "H"){
+                    columnPre = 8;
+                }
+                
+                if(moveStringAfter.substr(1,1) == "A"){
+                    columnAfter = 1;
+                }
+                else if(moveStringAfter.substr(1,1) == "B"){
+                    columnAfter = 2;
+                }
+                else if(moveStringAfter.substr(1,1) == "C"){
+                    columnAfter = 3;
+                }
+                else if(moveStringAfter.substr(1,1) == "D"){
+                    columnAfter = 4;
+                }
+                else if(moveStringAfter.substr(1,1) == "E"){
+                    columnAfter = 5;
+                }
+                else if(moveStringAfter.substr(1,1) == "F"){
+                    columnAfter = 6;
+                }
+                else if(moveStringAfter.substr(1,1) == "G"){
+                    columnAfter = 7;
+                }
+                else if(moveStringAfter.substr(1,1) == "H"){
+                    columnAfter = 8;
+                }
+            }
+            
+        }
 };
 
 //When a piece is taken away, it is taken away to this object

@@ -43,12 +43,15 @@ int main(){
 				int columnAfter;
 				
 				newBoard.getBoard();
-				
+				string moveStringPre = "";
+                string moveStringAfter = "";
 				cout << playerOneName << " move piece ";
-				cin >> rowPre >> columnPre;
+                cin>> moveStringPre;
+                
 				cout << " to ";
-				cin >> rowAfter >> columnAfter;
-				
+                cin>> moveStringAfter;
+                
+                newBoard.getMoveSpot(moveStringPre,moveStringAfter,rowPre, columnPre, rowAfter, columnAfter);
 				newBoard.movePiece(rowPre, columnPre, rowAfter, columnAfter);				
 				newBoard.getBoard();
 			}
