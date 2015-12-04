@@ -76,6 +76,7 @@ class chessBoard{
 					}
 				}
 			}
+            return false;
 		}
 		
 		//Only if checkmate doesn't work, this code will be there
@@ -90,6 +91,7 @@ class chessBoard{
 					}
 				}
 			}
+            return false;
 		}
 		
 		void movePiece(int rowPre, int columnPre, int rowAfter, int columnAfter){
@@ -131,6 +133,7 @@ class chessBoard{
 			if (board [rowPre] [columnPre] != "SPACE"){
 				return true;
 			}
+            return false;
 		}
 		
 		bool inputOutOfBounds(int rowPre, int columnPre){
@@ -195,9 +198,7 @@ class chessBoard{
 			else if (logicMoveRow == 1 && columnPre == columnAfter){
 				return true;
 			}
-			else {
-				return false;
-			}
+			return false;
 		}
 
 		bool knightConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
@@ -219,9 +220,7 @@ class chessBoard{
 			else if (logicMoveRow == -2 && logicMoveColumn == -1) {
 				return true;
 			}
-			else {
-				return false;
-			}
+			return false;
 		}
 
 		bool rookConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
