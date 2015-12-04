@@ -113,36 +113,43 @@ class chessBoard{
 				}
 				return false;
 			}
-			else if (piece == "KN1") {
+			else if (piece == "KN1" || piece == "KN2") {
 				if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 					return true;
 				}
 				return false;
 			}
-			else if (piece == "R1") {
+			else if (piece == "R1" || piece == "R2") {
 				if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 					return true;
 				}
 				return false;
 			}
-			else if (piece == "B1") {
+			else if (piece == "B1" || piece == "B2") {
 				if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 					return true;
 				}
 				return false;
 			}
-			else if (piece == "Q1") {
+			else if (piece == "Q1" || piece == "Q2") {
 				if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 					return true;
 				}
 				return false;
 			}
-			else if (piece == "K1") {
+			else if (piece == "K1" || piece == "K2") {
 				if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 					return true;
 				}
 				return false;
 			}
+			if (piece == "P2") {
+				if (this->pawnConstraintsP2(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
+
 			
 			return false;
 		}
@@ -301,6 +308,28 @@ class chessBoard{
 			}
 			return false;
 		}
+		bool pawnConstraintsP2(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs to check if pieces are in the way
+			int logicMoveRow;
+			int logicMoveColumn;
+
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+
+			if (logicMoveRow == -2 && columnPre == columnAfter) {
+				if (rowPre == 7 && columnPre == columnAfter) {
+					return true;
+				}
+			}
+			else if (logicMoveRow == -1 && board[rowAfter][columnAfter] != "SPACE" && (logicMoveColumn == 1 || logicMoveColumn == -1)) {
+				return true;
+				//May need to check to see if opponents piece is taken.
+			}
+			else if (logicMoveRow == -1 && columnPre == columnAfter) {
+				return true;
+			}
+			return false;
+		}
+
 		void check(){
 			
 		}
