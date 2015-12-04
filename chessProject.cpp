@@ -53,7 +53,7 @@ int main(){
 				cout << " to ";
                 cin>> moveStringAfter;
                 
-                newBoard.getMoveSpot(moveStringPre,moveStringAfter,rowPre, columnPre, rowAfter, columnAfter);
+                newBoard.getMoveSpot(moveStringPre, moveStringAfter,rowPre, columnPre, rowAfter, columnAfter);
 				newBoard.movePiece(rowPre, columnPre, rowAfter, columnAfter);				
 				newBoard.getBoard();
 			}

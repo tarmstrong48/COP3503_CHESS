@@ -109,8 +109,11 @@ class chessBoard{
 			//if (
 			if (piece == "P1"){
 				if (this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true){
-					return true;
+                    if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+                        return true;
+                    }
 				}
+                
 				return false;
 			}
 			else if (piece == "KN1" || piece == "KN2") {
@@ -121,19 +124,25 @@ class chessBoard{
 			}
 			else if (piece == "R1" || piece == "R2") {
 				if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
-					return true;
+                    if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+                        return true;
+                    }
 				}
 				return false;
 			}
 			else if (piece == "B1" || piece == "B2") {
 				if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
-					return true;
+                    if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+                        return true;
+                    }
 				}
 				return false;
 			}
 			else if (piece == "Q1" || piece == "Q2") {
 				if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
-					return true;
+                    if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+                        return true;
+                    }
 				}
 				return false;
 			}
@@ -346,28 +355,28 @@ class chessBoard{
 
                 rowAfter = stoi(moveStringAfter.substr(0,1));
                 
-                if(moveStringPre.substr(1,1) == "A"){
+                if((moveStringPre.substr(1,1) == "A") || (moveStringPre.substr(1,1) == "a")){
                     columnPre = 1;
                 }
-                else if(moveStringPre.substr(1,1) == "B"){
+                else if((moveStringPre.substr(1,1) == "B") || (moveStringPre.substr(1,1) == "b")){
                     columnPre = 2;
                 }
-                else if(moveStringPre.substr(1,1) == "C"){
+                else if((moveStringPre.substr(1,1) == "C") || (moveStringPre.substr(1,1) == "c")){
                     columnPre = 3;
                 }
-                else if(moveStringPre.substr(1,1) == "D"){
+                else if((moveStringPre.substr(1,1) == "D") || (moveStringPre.substr(1,1) == "d")){
                     columnPre = 4;
                 }
-                else if(moveStringPre.substr(1,1) == "E"){
+                else if((moveStringPre.substr(1,1) == "E") || (moveStringPre.substr(1,1) == "e")){
                     columnPre = 5;
                 }
-                else if(moveStringPre.substr(1,1) == "F"){
+                else if((moveStringPre.substr(1,1) == "F") || (moveStringPre.substr(1,1) == "f")){
                     columnPre = 6;
                 }
-                else if(moveStringPre.substr(1,1) == "G"){
+                else if((moveStringPre.substr(1,1) == "G") || (moveStringPre.substr(1,1) == "g")){
                     columnPre = 7;
                 }
-                else if(moveStringPre.substr(1,1) == "H"){
+                else if((moveStringPre.substr(1,1) == "H") || (moveStringPre.substr(1,1) == "h")){
                     columnPre = 8;
                 }
                 
@@ -398,20 +407,24 @@ class chessBoard{
             }
             
         }
+    
         bool isPathClear(int rowPre, int columnPre, int rowAfter, int columnAfter){
+            
             
             if((rowAfter > rowPre)){ // check row movement down
                 if(columnAfter == columnPre){ // check movement down
-                    for(int i = rowPre; i < rowAfter; i++){
-                        if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = rowPre + 1; i < rowAfter; i++){
+                        if(board [i] [columnPre] != "SPACE"){
+                            cout<< "Illegal move, piece in the way!\n";
                             return false;
                         }
                     }
                 }
                 else if (columnAfter < columnPre){ // check movement down and to the left
-                    for(int i = rowPre; i < rowAfter; i++){
-                        for(int i = columnPre; i > columnAfter; i--){
-                            if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = rowPre + 1; i < rowAfter; i++){
+                        for(int j = columnPre - 1; j > columnAfter; j--){
+                            if(board [i] [j] != "SPACE"){
+                                cout<< "Illegal move, piece in the way!\n";
                                 return false;
                             }
                         }
@@ -419,9 +432,10 @@ class chessBoard{
                     }
                 }
                 else if (columnAfter > columnPre){ // check movement down and to the right
-                    for(int i = rowPre; i < rowAfter; i++){
-                        for(int i = columnPre; i > columnAfter; i++){
-                            if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = rowPre + 1; i < rowAfter; i++){
+                        for(int j = columnPre + 1; j > columnAfter; j++){
+                            if(board [i] [j] != "SPACE"){
+                                cout<< "Illegal move, piece in the way!\n";
                                 return false;
                             }
                         }
@@ -432,16 +446,18 @@ class chessBoard{
             
             else if((rowAfter < rowPre)){ // check row movement up
                 if(columnAfter == columnPre){ // check movement up
-                    for(int i = rowPre; i > rowAfter; i--){
-                        if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = rowPre - 1; i > rowAfter; i--){
+                        if(board [i] [columnPre] != "SPACE"){
+                            cout<< "Illegal move, piece in the way!\n";
                             return false;
                         }
                     }
                 }
                 else if (columnAfter < columnPre){ // check movement up and to the left
-                    for(int i = columnPre; i > columnAfter; i--){
-                        for(int i = rowPre; i > rowAfter; i--){
-                            if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = columnPre - 1; i > columnAfter; i--){
+                        for(int j = rowPre - 1; j > rowAfter; j--){
+                            if(board [i] [j] != "SPACE"){
+                                cout<< "Illegal move, piece in the way!\n";
                                 return false;
                             }
                         }
@@ -449,9 +465,10 @@ class chessBoard{
                     }
                 }
                 else if (columnAfter > columnPre){ // check movement up and to the right
-                    for(int i = columnPre; i > columnAfter; i--){
-                        for(int i = rowPre; i < rowAfter; i++){
-                            if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int i = columnPre + 1; i > columnAfter; i--){
+                        for(int j = rowPre - 1; j < rowAfter; j++){
+                            if(board [i] [j] != "SPACE"){
+                                cout<< "Illegal move, piece in the way!\n";
                                 return false;
                             }
                         }
@@ -462,15 +479,17 @@ class chessBoard{
             
             else if (rowAfter == rowPre){ // check movement only horizontally
                 if(columnAfter > columnPre){ // check movement to the right
-                    for(int i = columnPre; i < columnAfter; i++){
-                        if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int j = columnPre + 1; j < columnAfter; j++){
+                        if(board [rowPre] [j] != "SPACE"){
+                            cout<< "Illegal move, piece in the way!\n";
                             return false;
                         }
                     }
                 }
                 else if (columnAfter < columnPre){ // check movement to the left
-                    for(int i = columnPre; i > columnAfter; i--){
-                        if(board [rowPre] [columnPre] != "SPACE"){
+                    for(int j = columnPre - 1; j > columnAfter; j--){
+                        if(board [rowPre] [j] != "SPACE"){
+                            cout<< "Illegal move, piece in the way!\n";
                             return false;
                         }
                     }
