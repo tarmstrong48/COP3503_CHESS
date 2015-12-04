@@ -131,6 +131,18 @@ class chessBoard{
 				}
 				return false;
 			}
+			else if (piece == "Q1") {
+				if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
+			else if (piece == "K1") {
+				if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
 			
 			return false;
 		}
@@ -273,6 +285,22 @@ class chessBoard{
 			return false;
 		}
 
+		bool queenConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+			return true;
+		}
+
+		bool kingConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+			int logicMoveRow;
+			int logicMoveColumn;
+
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+
+			if (logicMoveColumn == 1 || logicMoveRow == 1 || logicMoveColumn == -1 || logicMoveRow == -1) {
+				return true;
+			}
+			return false;
+		}
 		void check(){
 			
 		}
