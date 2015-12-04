@@ -117,6 +117,12 @@ class chessBoard{
 				}
 				return false;
 			}
+			else if (piece == "R1") {
+				if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+					return true;
+				}
+				return false;
+			}
 			
 			return false;
 		}
@@ -170,7 +176,7 @@ class chessBoard{
 			return false;
 		}
 		
-		bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){
+		bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){ //Still needs to check if pieces are in the way
 			int logicMoveRow;
 			int logicMoveColumn;
 			
@@ -189,12 +195,12 @@ class chessBoard{
 			else if (logicMoveRow == 1 && columnPre == columnAfter){
 				return true;
 			}
-			else{
+			else {
 				return false;
 			}
 		}
 
-		bool knightConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) {
+		bool knightConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
 			int logicMoveRow;
 			int logicMoveColumn;
 
@@ -211,6 +217,30 @@ class chessBoard{
 				return true;
 			}
 			else if (logicMoveRow == -2 && logicMoveColumn == -1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		bool rookConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+			int logicMoveRow;
+			int logicMoveColumn;
+
+			logicMoveRow = rowAfter - rowPre;
+			logicMoveColumn = columnAfter - columnPre;
+
+			if (logicMoveRow > 0 && logicMoveRow <= 7 && columnAfter == columnPre) {
+				return true;
+			}
+			else if (logicMoveRow >= -7 && logicMoveRow < 0 && columnAfter == columnPre) {
+				return true;
+			}
+			else if (logicMoveColumn > 0 && logicMoveColumn <= 7 && rowAfter == rowPre) {
+				return true;
+			}
+			else if (logicMoveColumn >= -7 && logicMoveColumn < 0 && rowAfter == rowPre) {
 				return true;
 			}
 			else {
