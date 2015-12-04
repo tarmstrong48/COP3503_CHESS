@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 int main(){
@@ -34,7 +35,8 @@ int main(){
 			cout << "START!" << endl;
 			newBoard.setUpBoard();
 			cout << "Please enter which piece you would like to move by coordinates." << endl;
-			cout << "Example: \"Move piece \" 1A \" to \"1B\"." << endl;
+
+			cout << "Example: \"Move piece \" 1A \" to \"2A\"." << endl;
 
 			while (gameFinished != true){
 				int rowPre;

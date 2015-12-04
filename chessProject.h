@@ -339,13 +339,13 @@ class chessBoard{
 		}
         void getMoveSpot(string moveStringPre, string moveStringAfter, int& rowPre, int& columnPre, int& rowAfter, int& columnAfter){
             if(moveStringPre.length() != 2 || moveStringPre.length() != 2){
-                cout<< "Wrong format, write one number then one letter like this: 1A.\n";
+                cout<< "Wrong format. Write one number and one letter like this: 1A.\n";
             }
             else{
                 rowPre = stoi(moveStringPre.substr(0,1));
-                cout<< "row pre: "<< rowPre<< endl;
+
                 rowAfter = stoi(moveStringAfter.substr(0,1));
-                cout<< "row after: "<< rowAfter<< endl;
+                
                 if(moveStringPre.substr(1,1) == "A"){
                     columnPre = 1;
                 }
