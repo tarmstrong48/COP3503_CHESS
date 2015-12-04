@@ -351,9 +351,56 @@ class chessBoard{
                 cout<< "Wrong format. Write one number and one letter like this: 1A.\n";
             }
             else{
-                rowPre = stoi(moveStringPre.substr(0,1));
-
-                rowAfter = stoi(moveStringAfter.substr(0,1));
+                if((moveStringPre.substr(0,1)) == "1"){
+                    rowPre = 1;
+                }
+                else if((moveStringPre.substr(0,1)) == "2"){
+                    rowPre = 2;
+                }
+                else if((moveStringPre.substr(0,1)) == "3"){
+                    rowPre = 3;
+                }
+                else if((moveStringPre.substr(0,1)) == "4"){
+                    rowPre = 4;
+                }
+                else if((moveStringPre.substr(0,1)) == "5"){
+                    rowPre = 5;
+                }
+                else if((moveStringPre.substr(0,1)) == "6"){
+                    rowPre = 6;
+                }
+                else if((moveStringPre.substr(0,1)) == "7"){
+                    rowPre = 7;
+                }
+                else if((moveStringPre.substr(0,1)) == "8"){
+                    rowPre = 8;
+                }
+                
+                if((moveStringAfter.substr(0,1)) == "1"){
+                    rowAfter = 1;
+                }
+                else if((moveStringAfter.substr(0,1)) == "2"){
+                    rowAfter = 2;
+                }
+                else if((moveStringAfter.substr(0,1)) == "3"){
+                    rowAfter = 3;
+                }
+                else if((moveStringAfter.substr(0,1)) == "4"){
+                    rowAfter = 4;
+                }
+                else if((moveStringAfter.substr(0,1)) == "5"){
+                    rowAfter = 5;
+                }
+                else if((moveStringAfter.substr(0,1)) == "6"){
+                    rowAfter = 6;
+                }
+                else if((moveStringAfter.substr(0,1)) == "7"){
+                    rowAfter = 7;
+                }
+                else if((moveStringAfter.substr(0,1)) == "8"){
+                    rowAfter = 8;
+                }
+                
                 
                 if((moveStringPre.substr(1,1) == "A") || (moveStringPre.substr(1,1) == "a")){
                     columnPre = 1;
