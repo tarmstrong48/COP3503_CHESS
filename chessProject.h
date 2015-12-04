@@ -398,6 +398,86 @@ class chessBoard{
             }
             
         }
+        bool isPathClear(int rowPre, int columnPre, int rowAfter, int columnAfter){
+            
+            if((rowAfter > rowPre)){ // check row movement down
+                if(columnAfter == columnPre){ // check movement down
+                    for(int i = rowPre; i < rowAfter; i++){
+                        if(board [rowPre] [columnPre] != "SPACE"){
+                            return false;
+                        }
+                    }
+                }
+                else if (columnAfter < columnPre){ // check movement down and to the left
+                    for(int i = rowPre; i < rowAfter; i++){
+                        for(int i = columnPre; i > columnAfter; i--){
+                            if(board [rowPre] [columnPre] != "SPACE"){
+                                return false;
+                            }
+                        }
+                        
+                    }
+                }
+                else if (columnAfter > columnPre){ // check movement down and to the right
+                    for(int i = rowPre; i < rowAfter; i++){
+                        for(int i = columnPre; i > columnAfter; i++){
+                            if(board [rowPre] [columnPre] != "SPACE"){
+                                return false;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+            else if((rowAfter < rowPre)){ // check row movement up
+                if(columnAfter == columnPre){ // check movement up
+                    for(int i = rowPre; i > rowAfter; i--){
+                        if(board [rowPre] [columnPre] != "SPACE"){
+                            return false;
+                        }
+                    }
+                }
+                else if (columnAfter < columnPre){ // check movement up and to the left
+                    for(int i = columnPre; i > columnAfter; i--){
+                        for(int i = rowPre; i > rowAfter; i--){
+                            if(board [rowPre] [columnPre] != "SPACE"){
+                                return false;
+                            }
+                        }
+                        
+                    }
+                }
+                else if (columnAfter > columnPre){ // check movement up and to the right
+                    for(int i = columnPre; i > columnAfter; i--){
+                        for(int i = rowPre; i < rowAfter; i++){
+                            if(board [rowPre] [columnPre] != "SPACE"){
+                                return false;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+            else if (rowAfter == rowPre){ // check movement only horizontally
+                if(columnAfter > columnPre){ // check movement to the right
+                    for(int i = columnPre; i < columnAfter; i++){
+                        if(board [rowPre] [columnPre] != "SPACE"){
+                            return false;
+                        }
+                    }
+                }
+                else if (columnAfter < columnPre){ // check movement to the left
+                    for(int i = columnPre; i > columnAfter; i--){
+                        if(board [rowPre] [columnPre] != "SPACE"){
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
 };
 
 //When a piece is taken away, it is taken away to this object
