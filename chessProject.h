@@ -5,7 +5,26 @@
 #include <string>
 
 using namespace std;
-
+string addColor(string str, string color){
+    if (color == "red"){
+        return "\033[1;31m" + str + "\033[0m";
+    }
+    if (color == "blue"){
+        return "\033[1;34m" + str + "\033[0m";
+    }
+    if (color == "green"){
+        return "\033[1;32m" + str + "\033[0m";
+    }
+    if (color == "yellow"){
+        return "\033[1;33m" + str + "\033[0m";
+    }
+    if (color == "magenta"){
+        return "\033[1;35m" + str + "\033[0m";
+    }
+    if (color == "cyan"){
+        return "\033[1;36m" + str + "\033[0m";
+    }    
+}
 class chessBoard{
 private:
     string board [9] [9];
@@ -14,13 +33,14 @@ public:
     chessBoard(){
         for (int row = 1; row < 9; row++){
             for (int column = 0; column < 1; column++){
-                string rowNumbers[8] = {"1", "2", "3", "4", "5", "6", "7", "8"};
+                string rowNumbers[8] = {addColor("1","green"), addColor("2","green"),addColor("3","green"),addColor("4","green"),addColor("5","green"),addColor("6","green"),addColor("7","green"),addColor("8","green")};
+                board [row] [column] = rowNumbers[row - 1];
                 board [row] [column] = rowNumbers[row - 1];
             }
         }
         for (int column = 1; column < 9; column++){
             for (int row = 0; row < 1; row++){
-                string columnLetters[8] = {"A", "B", "C", "D", "E", "F", "G", "H"};
+                string columnLetters[8] = {addColor("A","green"), addColor("B","green"),addColor("C","green"),addColor("D","green"),addColor("E","green"),addColor("F","green"),addColor("G","green"),addColor("H","green")};
                 board [row] [column] = columnLetters[column - 1];
             }
         }
@@ -33,19 +53,23 @@ public:
     
     void setUpBoard(){
         for (int column = 1; column < 9 ; column++){
-            string playerOnePieces[8] = {"R1", "KN1", "B1", "Q1", "K1", "B1", "KN1", "R1"};
+            string playerOnePieces[8] = {addColor("R", "red"), addColor("KN", "red"), addColor("B", "red"), addColor("Q", "red"), addColor("K", "red"), addColor("B", "red"), addColor("KN", "red"), addColor("R", "red")};
             board [1] [column] = playerOnePieces[column - 1];
         }
         for (int column = 1; column < 9 ; column++){
-            string playerOnePieces[8] = {"P1", "P1", "P1", "P1", "P1", "P1", "P1", "P1"};
+            string playerOnePieces[8] = {addColor("P" , "red"), addColor("P" , "red"), 
+                    addColor("P" , "red"), addColor("P" , "red"), addColor("P" , "red"), addColor("P" , "red"), 
+                        addColor("P" , "red"), addColor("P" , "red")};
             board [2] [column] = playerOnePieces[column - 1];
         }
         for (int column = 1; column < 9 ; column++){
-            string playerTwoPieces[8] = {"P2", "P2", "P2", "P2", "P2", "P2", "P2", "P2"};
+            string playerTwoPieces[8] = {addColor("P" , "blue"), addColor("P" , "blue"), 
+                    addColor("P" , "blue"), addColor("P" , "blue"), addColor("P" , "blue"), 
+                        addColor("P" , "blue"), addColor("P" , "blue"), addColor("P" , "blue")};
             board [7] [column] = playerTwoPieces[column - 1];
         }
         for (int column = 1; column < 9 ; column++){
-            string playerTwoPieces[8] = {"R2", "KN2", "B2", "Q2", "K2", "B2", "KN2", "R2"};
+            string playerTwoPieces[8] = {addColor("R", "blue"), addColor("KN", "blue"), addColor("B", "blue"), addColor("Q", "blue"), addColor("K", "blue"), addColor("B", "blue"), addColor("KN", "blue"), addColor("R", "blue")};
             board [8] [column] = playerTwoPieces[column - 1];
         }
     }
@@ -68,7 +92,7 @@ public:
     bool checkForKingOne(){
         for (int i = 1; i < 9; i++){
             for (int j = 1; j < 8; j++){
-                if (board [i] [j] == "K1"){
+                if (board [i] [j] == addColor("K", "red")){
                     return true;
                 }
                 else{
@@ -83,7 +107,7 @@ public:
     bool checkForKingTwo(){
         for (int i = 1; i < 9; i++){
             for (int j = 1; j < 8; j++){
-                if (board [i] [j] == "K1"){
+                if (board [i] [j] == addColor("K", "blue")){
                     return true;
                 }
                 else{
@@ -107,7 +131,7 @@ public:
         
         //Check to see if own piece is at the after point
         //if (
-        if (piece == "P1"){
+        if (piece == addColor("P" , "red")){
             if (this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true){
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
 					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -119,7 +143,7 @@ public:
             
             return false;
         }
-        else if (piece == "KN1") {
+        else if (piece == addColor("KN", "red")) {
             if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->pieceP1(rowAfter, columnAfter)) {
 					return false;
@@ -128,7 +152,7 @@ public:
             }
             return false;
         }
-        else if (piece == "R1") {
+        else if (piece == addColor("R", "red")) {
             if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
 					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -139,7 +163,7 @@ public:
             }
             return false;
         }
-        else if (piece == "B1") {
+        else if (piece == addColor("B", "red")) {
             if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
 					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -150,7 +174,7 @@ public:
             }
             return false;
         }
-        else if (piece == "Q1") {
+        else if (piece == addColor("Q", "red")) {
             if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
 					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -161,7 +185,7 @@ public:
             }
             return false;
         }
-        else if (piece == "K1") {
+        else if (piece == addColor("K", "red")) {
             if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
 					return false;
@@ -170,7 +194,7 @@ public:
             }
             return false;
         }
-        else if (piece == "P2") {
+        else if (piece == addColor("P" , "blue")) {
             if (this->pawnConstraintsP2(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
 					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -181,7 +205,7 @@ public:
             }
             return false;
         }
-		else if (piece == "KN2") {
+		else if (piece == addColor("KN", "blue")) {
 			if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->pieceP2(rowAfter, columnAfter)) {
 					return false;
@@ -190,7 +214,7 @@ public:
 			}
 			return false;
 		}
-		else if (piece == "R2") {
+		else if (piece == addColor("R", "blue")) {
 			if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
 					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -201,7 +225,7 @@ public:
 			}
 			return false;
 		}
-		else if (piece == "B2") {
+		else if (piece == addColor("B", "blue")) {
 			if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
 					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -212,7 +236,7 @@ public:
 			}
 			return false;
 		}
-		else if (piece == "Q2") {
+		else if (piece == addColor("Q", "blue")) {
 			if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
 					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
@@ -223,7 +247,7 @@ public:
 			}
 			return false;
 		}
-		else if (piece == "K2") {
+		else if (piece == addColor("K", "blue")) {
 			if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
 				if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
 					return false;
@@ -261,12 +285,9 @@ public:
     
     bool pieceP1(int rowPre, int columnPre){
         string parsingNameOfPiece;
-        //string playerOneString = "";
         
         parsingNameOfPiece = board [rowPre] [columnPre];
-        //playerOneString = parsingNameOfPiece.find("1");
-        
-        if (parsingNameOfPiece.find("1") != std::string::npos){			//Find will not return npos if string is found
+        if (parsingNameOfPiece[5]*4==196){			//Check if color is red
             return true;
         }
         return false;
@@ -275,14 +296,13 @@ public:
     
     bool pieceP2(int rowPre, int columnPre){
         string parsingNameOfPiece;
-        //string playerOneString = "";
         
         parsingNameOfPiece = board [rowPre] [columnPre];
-        //playerOneString = parsingNameOfPiece.find("2");
-        
-        if (parsingNameOfPiece.find("2") != std::string::npos){			//Find will not return npos if string is found
+        if (parsingNameOfPiece[5]*4==208){			//Check if color is blue
+            cout<<"true";
             return true;
         }
+        cout<<"false";
         return false;
     }
     
