@@ -110,56 +110,129 @@ public:
         if (piece == "P1"){
             if (this -> pawnConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true){
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
                     return true;
                 }
             }
             
             return false;
         }
-        else if (piece == "KN1" || piece == "KN2") {
+        else if (piece == "KN1") {
             if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->pieceP1(rowAfter, columnAfter)) {
+					return false;
+				}
                 return true;
             }
             return false;
         }
-        else if (piece == "R1" || piece == "R2") {
+        else if (piece == "R1") {
             if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
                     return true;
                 }
             }
             return false;
         }
-        else if (piece == "B1" || piece == "B2") {
+        else if (piece == "B1") {
             if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
                     return true;
                 }
             }
             return false;
         }
-        else if (piece == "Q1" || piece == "Q2") {
+        else if (piece == "Q1") {
             if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
                 if(this -> isPathClear(rowPre, columnPre, rowAfter, columnAfter)){
+					if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
                     return true;
                 }
             }
             return false;
         }
-        else if (piece == "K1" || piece == "K2") {
+        else if (piece == "K1") {
             if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->pieceP1(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+					return false;
+				}
                 return true;
             }
             return false;
         }
-        if (piece == "P2") {
+        else if (piece == "P2") {
             if (this->pawnConstraintsP2(rowPre, columnPre, rowAfter, columnAfter) == true) {
-                return true;
+				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
+					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
+					return true;
+				}
             }
             return false;
         }
-        
-        
+		else if (piece == "KN2") {
+			if (this->knightConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->pieceP2(rowAfter, columnAfter)) {
+					return false;
+				}
+				return true;
+			}
+			return false;
+		}
+		else if (piece == "R2") {
+			if (this->rookConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
+					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+		else if (piece == "B2") {
+			if (this->bishopConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
+					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+		else if (piece == "Q2") {
+			if (this->queenConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->isPathClear(rowPre, columnPre, rowAfter, columnAfter)) {
+					if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+						return false;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+		else if (piece == "K2") {
+			if (this->kingConstraintsP1(rowPre, columnPre, rowAfter, columnAfter) == true) {
+				if (this->pieceP2(rowAfter, columnAfter)) {		//Makes sure that P1's piece cannot take P1's piece.
+					return false;
+				}
+				return true;
+			}
+			return false;
+		}
+
         return false;
     }
     
@@ -188,12 +261,12 @@ public:
     
     bool pieceP1(int rowPre, int columnPre){
         string parsingNameOfPiece;
-        string playerOneString = "";
+        //string playerOneString = "";
         
         parsingNameOfPiece = board [rowPre] [columnPre];
-        playerOneString = parsingNameOfPiece.find("1");
+        //playerOneString = parsingNameOfPiece.find("1");
         
-        if (playerOneString == "1"){
+        if (parsingNameOfPiece.find("1") != std::string::npos){		//find will not return npos if string is found
             return true;
         }
         return false;
@@ -202,12 +275,12 @@ public:
     
     bool pieceP2(int rowPre, int columnPre){
         string parsingNameOfPiece;
-        string playerOneString = "";
+        //string playerOneString = "";
         
         parsingNameOfPiece = board [rowPre] [columnPre];
-        playerOneString = parsingNameOfPiece.find("2");
+        //playerOneString = parsingNameOfPiece.find("2");
         
-        if (playerOneString == "2"){
+        if (parsingNameOfPiece.find("2") != std::string::npos){		//find will not return npos if string is found
             return true;
         }
         return false;
