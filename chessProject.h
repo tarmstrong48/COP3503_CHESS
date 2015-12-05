@@ -266,7 +266,7 @@ public:
         parsingNameOfPiece = board [rowPre] [columnPre];
         //playerOneString = parsingNameOfPiece.find("1");
         
-        if (parsingNameOfPiece.find("1") != std::string::npos){		//find will not return npos if string is found
+        if (parsingNameOfPiece.find("1") != std::string::npos){			//Find will not return npos if string is found
             return true;
         }
         return false;
@@ -280,20 +280,20 @@ public:
         parsingNameOfPiece = board [rowPre] [columnPre];
         //playerOneString = parsingNameOfPiece.find("2");
         
-        if (parsingNameOfPiece.find("2") != std::string::npos){		//find will not return npos if string is found
+        if (parsingNameOfPiece.find("2") != std::string::npos){			//Find will not return npos if string is found
             return true;
         }
         return false;
     }
     
-    bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){ //Still needs to check if pieces are in the way
+    bool pawnConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter){
         int logicMoveRow;
         int logicMoveColumn;
         
         logicMoveRow = rowAfter - rowPre;
         logicMoveColumn = columnAfter - columnPre;
         
-        if (logicMoveRow == 2 && columnPre == columnAfter) {
+        if (logicMoveRow == 2 && columnPre == columnAfter) {			//P1 pawns can move 2 spaces if they are at row 2
             if (rowPre == 2 && columnPre == columnAfter) {
                 return true;
             }
@@ -302,7 +302,7 @@ public:
             return true;
             //May need to check to see if opponents piece is taken.
         }
-        else if (logicMoveRow == 1 && columnPre == columnAfter){
+        else if (logicMoveRow == 1 && columnPre == columnAfter){		//Otherwise, they only move 1 space forward
             return true;
         }
         return false;
@@ -315,7 +315,7 @@ public:
         logicMoveRow = rowAfter - rowPre;
         logicMoveColumn = columnAfter - columnPre;
         
-        if (logicMoveRow == 2 && logicMoveColumn == 1) {
+        if (logicMoveRow == 2 && logicMoveColumn == 1) {				//Knight can only move in an 'L' pattern
             return true;
         }
         else if (logicMoveRow == 2 && logicMoveColumn == -1) {
@@ -330,14 +330,14 @@ public:
         return false;
     }
     
-    bool rookConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+    bool rookConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
         int logicMoveRow;
         int logicMoveColumn;
         
         logicMoveRow = rowAfter - rowPre;
         logicMoveColumn = columnAfter - columnPre;
         
-        if (logicMoveRow > 0 && logicMoveRow <= 7 && columnAfter == columnPre) {
+        if (logicMoveRow > 0 && logicMoveRow <= 7 && columnAfter == columnPre) {			//Rook can only change either column or row, up to 7 spaces
             return true;
         }
         else if (logicMoveRow >= -7 && logicMoveRow < 0 && columnAfter == columnPre) {
@@ -352,14 +352,14 @@ public:
         return false;
     }
     
-    bool bishopConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+    bool bishopConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
         int logicMoveRow;
         int logicMoveColumn;
         
         logicMoveRow = rowAfter - rowPre;
         logicMoveColumn = columnAfter - columnPre;
         
-        if (logicMoveRow >= 1 && logicMoveRow <= 7 && logicMoveColumn == logicMoveRow) {
+        if (logicMoveRow >= 1 && logicMoveRow <= 7 && logicMoveColumn == logicMoveRow) {	//Bishop moves a horizontal distance equal to the vertical distance
             return true;
         }
         if (logicMoveRow <= -1 && logicMoveRow >= -7 && logicMoveColumn == logicMoveRow) {
@@ -374,18 +374,18 @@ public:
         return false;
     }
     
-    bool queenConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+    bool queenConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
         return true;
     }
     
-    bool kingConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if pieces are in the way and if piece was taken
+    bool kingConstraintsP1(int rowPre, int columnPre, int rowAfter, int columnAfter) { //Still needs check if piece was taken
         int logicMoveRow;
         int logicMoveColumn;
         
         logicMoveRow = rowAfter - rowPre;
         logicMoveColumn = columnAfter - columnPre;
         
-        if (logicMoveColumn == 1 || logicMoveRow == 1 || logicMoveColumn == -1 || logicMoveRow == -1) {
+        if (logicMoveColumn == 1 || logicMoveRow == 1 || logicMoveColumn == -1 || logicMoveRow == -1) {		//King can only move 1 space in any direction
             return true;
         }
         return false;
@@ -398,7 +398,7 @@ public:
         logicMoveColumn = columnAfter - columnPre;
         
         if (logicMoveRow == -2 && columnPre == columnAfter) {
-            if (rowPre == 7 && columnPre == columnAfter) {
+            if (rowPre == 7 && columnPre == columnAfter) {				//P2 pawns can move 2 spaces if they are at row 7
                 return true;
             }
         }
@@ -406,7 +406,7 @@ public:
             return true;
             //May need to check to see if opponents piece is taken.
         }
-        else if (logicMoveRow == -1 && columnPre == columnAfter) {
+        else if (logicMoveRow == -1 && columnPre == columnAfter) {		//Otherwise, they only move 1 space forward
             return true;
         }
         return false;
