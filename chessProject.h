@@ -294,7 +294,10 @@ public:
         logicMoveColumn = columnAfter - columnPre;
         
         if (logicMoveRow == 2 && columnPre == columnAfter) {			//P1 pawns can move 2 spaces if they are at row 2
-            if (rowPre == 2 && columnPre == columnAfter) {
+            if (rowPre == 2 && columnPre == columnAfter) {				
+				if (pieceP2(rowAfter, columnAfter)) {					//Makes sure pawns can't take what's in front of them
+					return false;
+				}
                 return true;
             }
         }
@@ -303,7 +306,10 @@ public:
             //May need to check to see if opponents piece is taken.
         }
         else if (logicMoveRow == 1 && columnPre == columnAfter){		//Otherwise, they only move 1 space forward
-            return true;
+			if (pieceP2(rowAfter, columnAfter)) {						//Makes sure pawns can't take what's in front of them
+				return false;
+			}
+			return true;
         }
         return false;
     }
@@ -399,7 +405,10 @@ public:
         
         if (logicMoveRow == -2 && columnPre == columnAfter) {
             if (rowPre == 7 && columnPre == columnAfter) {				//P2 pawns can move 2 spaces if they are at row 7
-                return true;
+				if (pieceP1(rowAfter, columnAfter)) {					//Makes sure pawns can't take what's in front of them
+					return false;
+				}
+				return true;
             }
         }
         else if (logicMoveRow == -1 && board[rowAfter][columnAfter] != "SPACE" && (logicMoveColumn == 1 || logicMoveColumn == -1)) {
@@ -407,7 +416,10 @@ public:
             //May need to check to see if opponents piece is taken.
         }
         else if (logicMoveRow == -1 && columnPre == columnAfter) {		//Otherwise, they only move 1 space forward
-            return true;
+			if (pieceP1(rowAfter, columnAfter)) {						//Makes sure pawns can't take what's in front of them
+				return false;
+			}
+			return true;
         }
         return false;
     }
